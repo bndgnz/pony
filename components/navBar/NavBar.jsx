@@ -4,7 +4,85 @@ import { useEffect, useState } from "react";
 import { navData } from "./navData";
 import Logo_light from "/public/images/logo-light.png";
 import Logo from "/public/images/logo.png";
+import { useQuery, gql } from "@apollo/client";
+import linkResolver from "@/src/utils/helpers/linkManager"
 
+const MENU = gql`
+  query {
+    siteConfigurationCollection(
+      where: { title: "Default Site Configuration" }
+      limit: 1
+    ) {
+      items {
+        title
+        footer {
+          title
+          footerLogo
+          introduction
+          address
+          rightColumn
+          copyright
+          quickLinkMenu {
+            title
+            ...LinksCollection
+          }
+          footerLinksMenu {
+            title
+            ...LinksCollection
+          }
+
+          socialLinksCollection {
+            items {
+              title
+              linkUrl
+              faviconClasses
+            }
+          }
+        }
+        header {
+          title
+          headerLogo
+          buttonText
+          buttonLink
+          headerMenu {
+            ...LinksCollection
+            title
+          }
+        }
+      }
+    }
+  }
+
+  fragment LinksCollection on Menu {
+    title
+
+    linksCollection {
+      items {
+        pageLink {
+          ...PageLink
+        }
+
+        title
+        url
+
+        subLinksCollection(limit: 10) {
+          items {
+            pageLink {
+              ...PageLink
+            }
+            title
+            url
+          }
+        }
+      }
+    }
+  }
+
+  fragment PageLink on Page {
+    title
+    slug
+  }
+`;
 const NavBar = ({ cls = "header--secondary" }) => {
   const [windowHeight, setWindowHeight] = useState(0);
   const [active, setActive] = useState(false);
@@ -48,6 +126,54 @@ const NavBar = ({ cls = "header--secondary" }) => {
     };
   }, []);
 
+  const { data, loading, error } = useQuery(MENU);
+  if (loading) {
+    return <div></div>;
+  }
+  if (error) {
+    return <div></div>;
+  }
+
+  console.log(data);
+  const listOfItems =
+    data.siteConfigurationCollection.items[0].header.headerMenu.linksCollection.items.map(
+      (link, idx) => {
+ const url = linkResolver(link.title)
+ 
+
+  
+        return (
+          <li className="nav__menu-item nav__menu-item--dropdown">
+            <Link
+              onClick={() => handleDropdown(id)}
+              href={url}
+              className={`nav__menu-link nav__menu-link--dropdown ${"nav__menu-link--dropdown-active"}`}
+            >{link.title}</Link>
+            <ul
+              className={`nav__dropdown ${
+                dropdownId === "nav__dropdown-active"
+              }`}
+            >
+              {link.subLinksCollection.items.map(
+                (  link, dp_itm, url, sbu_dropdown, sub_items   ) => {
+                  return sbu_dropdown ? (
+                  null
+                  ) : (
+                    <li>
+                      <Link
+                        className="nav__dropdown-item hide-nav"
+                        href={ link.title }
+                        onClick={handleActive}
+                      >{link.title}</Link>
+                    </li>
+                  );
+                }
+              )}
+            </ul>
+          </li>
+        );
+      }
+    );
   return (
     <header className={`header ${cls} ${windowHeight > 50 && "header-active"}`}>
       <div className="container">
@@ -74,92 +200,8 @@ const NavBar = ({ cls = "header--secondary" }) => {
                   </div>
 
                   <ul className="nav__menu-items">
-                    {navData.map(
-                      ({ itm, url, id, dropdown, dropdown_itms }) => {
-                        return dropdown ? (
-                          <li
-                            key={id}
-                            className="nav__menu-item nav__menu-item--dropdown"
-                          >
-                            <Link
-                              onClick={() => handleDropdown(id)}
-                              // href={url}
-                              href="URL:void(0)"
-                              className={`nav__menu-link nav__menu-link--dropdown ${
-                                dropdownId === id &&
-                                "nav__menu-link--dropdown-active"
-                              }`}
-                            >
-                              {itm}
-                            </Link>
-                            <ul
-                              className={`nav__dropdown ${
-                                dropdownId === id && "nav__dropdown-active"
-                              }`}
-                            >
-                              {dropdown_itms?.map(
-                                ({
-                                  id,
-                                  dp_itm,
-                                  url,
-                                  sbu_dropdown,
-                                  sub_items,
-                                }) => {
-                                  return sbu_dropdown ? (
-                                    <li
-                                      key={id}
-                                      className="nav__menu-link-child"
-                                    >
-                                      <Link
-                                        onClick={() => handleSubDropdown(id)}
-                                        className="nav__dropdown-item nav__menu-link--dropdown nav__menu-link-childr"
-                                        href="URL:void(0)"
-                                      >
-                                        {dp_itm}
-                                      </Link>
-                                      <ul
-                                        className={`nav__dropdown-child ${
-                                          subDropdown === id &&
-                                          "nav__dropdown-active"
-                                        }`}
-                                      >
-                                        {sub_items?.map(
-                                          ({ id, url, sub_itm }) => (
-                                            <li key={id}>
-                                              <Link
-                                                className="nav__dropdown-item hide-nav"
-                                                href={url}
-                                                onClick={handleActive}
-                                              >
-                                                {sub_itm}
-                                              </Link>
-                                            </li>
-                                          )
-                                        )}
-                                      </ul>
-                                    </li>
-                                  ) : (
-                                    <li key={id}>
-                                      <Link
-                                        className="nav__dropdown-item hide-nav"
-                                        href={url}
-                                        onClick={handleActive}
-                                      >
-                                        {dp_itm}
-                                      </Link>
-                                    </li>
-                                  );
-                                }
-                              )}
-                            </ul>
-                          </li>
-                        ) : (
-                          <li>
-                            <Link></Link>
-                          </li>
-                        );
-                      }
-                    )}
+                    {listOfItems}
+
                     <li className="nav__menu-item d-block d-md-none">
                       <Link
                         href="/sign-in"

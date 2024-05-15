@@ -6,19 +6,33 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:types": "contentful-typescript-codegen --output src/@types/contentful.d.ts"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.2",
+    "@contentful/rich-text-html-renderer": "^16.3.5",
+    "bootstrap": "^5.3.3",
+    "graphql": "^16.8.1",
+    "next": "14.2.3",
     "react": "^18",
+    "react-bootstrap": "^2.10.2",
     "react-dom": "^18",
-    "next": "14.2.3"
+    "react-modal-video": "^2.0.1",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "contentful": "^10.9.2",
+    "contentful-management": "^11.25.3",
+    "contentful-typescript-codegen": "^3.4.0",
+    "dotenv": "^16.4.5",
     "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+    "eslint-config-next": "14.2.3",
+    "sass": "^1.76.0",
+    "typescript": "^5"
   }
 }

@@ -2,48 +2,48 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { IPageFields } from "../src/@types/contentful";
 import ContentService from "@/src/utils/content-service";
-import Layout from "@/src/components/Layout";
+import Layout from "@/src/components/layout";
 import Seo from "@/src/components/Layout/components/seo"
- 
+import NavBar from "@/components/navBar/NavBar";
+import Preloader from "@/components/preloader/Preloader";
+import ScrollToTop from "@/components/scrollToTop/ScrollToTop"; 
 
 interface Props {
-  page: IPageFields;
+  landingPage: IPageFields;
 }
 
-const Page: NextPage<Props> = ({
-  page: {
+const LandingPage: NextPage<Props> = ({
+  landingPage: {
     title,
     description,
     image,
     content,
-    slug
-    
+    slug,
+    path,
+    components,
+    showBanner,
+    showBreadcrumb,
+    showContent,
+    contentImage
+
+     
   },
 }) => (
   <>
-<Seo title={title} description={description} /> 
+ <>
+ 
 
-
- 
-  <Layout
-      title={title}
-      image={image[0].secure_url}
+ <Layout contentImage={contentImage} title={title} showContent={showContent} description={description} image={image} showBreadcrumb={showBreadcrumb} content={content} slug={slug} path={path} components={components} showBanner={showBanner} />
  
  
-      introduction={description}
-      content={content}
- 
-    >
-   
-
-</Layout>
+    </>
 
 
 
   </>
 );
 
-export default Page;
+export default LandingPage;
 
 export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (
   ctx
@@ -52,26 +52,26 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (
 
 
  
-  const page = await ContentService.instance.getPageBySlug(slug);
-  if (!page) {
+  const landingPage = await ContentService.instance.getPageBySlug(slug);
+  if (!landingPage) {
     return { notFound: true };
   }
   return {
     props: {
-      landingPage: page.fields,
+      landingPage: landingPage.fields,
     },
   };
 };
 export const getStaticPaths: GetStaticPaths = async () => {
-  const landingPages =
+  const pages =
     await ContentService.instance.getEntriesByType<IPageFields>(
       "page"
     );
 
   return {
-    paths: page.map((page) => ({
+    paths: pages.map((page) => ({
       params: {
-        slug: page.fields.slug,
+        slug: page.fields.slug
       },
     })),
     fallback: false,

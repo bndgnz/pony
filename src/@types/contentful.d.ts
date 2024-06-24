@@ -76,11 +76,11 @@ export interface ICardFields {
   /** Title */
   title: string;
 
-  /** Icon */
-  icon: Record<string, any>;
-
   /** Text */
   text?: string | undefined;
+
+  /** Image */
+  image?: Record<string, any> | undefined;
 }
 
 export interface ICard extends Entry<ICardFields> {
@@ -103,6 +103,9 @@ export interface ICard extends Entry<ICardFields> {
 export interface ICardListingFields {
   /** Title */
   title: string;
+
+  /** Headline */
+  headline?: string | undefined;
 
   /** Introduction */
   introduction?: string | undefined;
@@ -176,6 +179,9 @@ export interface IEventFields {
 
   /** slug */
   slug: string;
+
+  /** path */
+  path?: string | undefined;
 }
 
 /** A scheduled event for the pony club. */
@@ -200,6 +206,30 @@ export interface IEvent extends Entry<IEventFields> {
 export interface IEventListingFields {
   /** Title */
   title: string;
+
+  /** Description */
+  description?: string | undefined;
+
+  /** Events */
+  events: IEvent[];
+
+  /** Date */
+  date?: string | undefined;
+
+  /** Day and Time */
+  dayAndTime: string;
+
+  /** Location */
+  location?: string | undefined;
+
+  /** Price */
+  price?: string | undefined;
+
+  /** slug */
+  slug?: string | undefined;
+
+  /** path */
+  path?: string | undefined;
 }
 
 export interface IEventListing extends Entry<IEventListingFields> {
@@ -234,6 +264,9 @@ export interface IFacilityFields {
 
   /** slug */
   slug: string;
+
+  /** path */
+  path?: string | undefined;
 }
 
 /** A facility available at the pony club, i.e. club rooms haha :-) */
@@ -281,26 +314,29 @@ export interface IFooterFields {
   /** Title */
   title: string;
 
-  /** Logo */
-  logo: Record<string, any>;
-
-  /** Menu */
-  menu: IMenu;
-
-  /** Address */
-  address?: string | undefined;
-
-  /** Copyright */
-  copyright: string;
-
-  /** Bottom Links */
-  bottomLinks: INavigationLink[];
-
-  /** Right Column */
-  rightColumn?: string | undefined;
+  /** Footer Logo */
+  footerLogo?: Record<string, any> | undefined;
 
   /** Introduction */
   introduction?: string | undefined;
+
+  /** Social Links */
+  socialLinks?: ISocialLinks[] | undefined;
+
+  /** Quick Link Menu */
+  quickLinkMenu: IMenu;
+
+  /** Footer Links Menu */
+  footerLinksMenu?: IMenu | undefined;
+
+  /** Right Column */
+  rightColumn?: Document | undefined;
+
+  /** Copyright */
+  copyright?: string | undefined;
+
+  /** Address */
+  address?: Document | undefined;
 }
 
 export interface IFooter extends Entry<IFooterFields> {
@@ -313,6 +349,40 @@ export interface IFooter extends Entry<IFooterFields> {
     contentType: {
       sys: {
         id: "footer";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IHeaderFields {
+  /** Title */
+  title: string;
+
+  /** Header Logo */
+  headerLogo?: Record<string, any> | undefined;
+
+  /** Header Menu */
+  headerMenu: IMenu;
+
+  /** Button Text */
+  buttonText?: string | undefined;
+
+  /** Button Link */
+  buttonLink?: string | undefined;
+}
+
+export interface IHeader extends Entry<IHeaderFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "header";
         linkType: "ContentType";
         type: "Link";
       };
@@ -352,11 +422,11 @@ export interface INavigationLinkFields {
   /** Title */
   title: string;
 
-  /** Page */
-  page: IPage | IFacility | ITraining | IEvent;
+  /** Page Link */
+  pageLink: IPage | IFacility | ITraining | IEvent;
 
   /** Sub Links */
-  subLinks?: INavigationLink[] | undefined;
+  subLinks?: (INavigationLink | IEvent | IPage)[] | undefined;
 }
 
 /** A link to add to a menu */
@@ -391,8 +461,35 @@ export interface IPageFields {
   /** Content */
   content?: Document | undefined;
 
+  /** Content Image */
+  contentImage?: Record<string, any> | undefined;
+
   /** slug */
   slug: string;
+
+  /** path */
+  path?: string | undefined;
+
+  /** Components */
+  components?:
+    | (
+        | IBanner
+        | ICardListing
+        | ICarousel
+        | IEventListing
+        | IFacilityListing
+        | ITrainingListing
+      )[]
+    | undefined;
+
+  /** Show Banner */
+  showBanner?: boolean | undefined;
+
+  /** Show Breadcrumb */
+  showBreadcrumb?: boolean | undefined;
+
+  /** Show Content */
+  showContent?: boolean | undefined;
 }
 
 /** A basic page for the site */
@@ -456,6 +553,68 @@ export interface IPerson extends Entry<IPersonFields> {
   };
 }
 
+export interface ISiteConfigurationFields {
+  /** Title */
+  title: string;
+
+  /** Footer  */
+  footer?: IFooter | undefined;
+
+  /** Header */
+  header?: IHeader | undefined;
+
+  /** Browser Title Prefix */
+  browserTitlePrefix?: string | undefined;
+
+  /** Google Analytics ID */
+  googleAnalyticsId?: string | undefined;
+}
+
+export interface ISiteConfiguration extends Entry<ISiteConfigurationFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "siteConfiguration";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ISocialLinksFields {
+  /** Title */
+  title: string;
+
+  /** Link Url */
+  linkUrl: string;
+
+  /** Favicon Classes */
+  faviconClasses: string;
+}
+
+export interface ISocialLinks extends Entry<ISocialLinksFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "socialLinks";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ITrainingFields {
   /** Title */
   title: string;
@@ -471,6 +630,9 @@ export interface ITrainingFields {
 
   /** slug */
   slug: string;
+
+  /** path */
+  path?: string | undefined;
 }
 
 /** A basic page for a training type, such as dressage or basic horsemanship. */
@@ -492,6 +654,31 @@ export interface ITraining extends Entry<ITrainingFields> {
   };
 }
 
+export interface ITrainingListingFields {
+  /** Title */
+  title?: string | undefined;
+
+  /** Trainings */
+  trainings?: ITraining[] | undefined;
+}
+
+export interface ITrainingListing extends Entry<ITrainingListingFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "trainingListing";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
   | "banner"
   | "blog"
@@ -503,11 +690,15 @@ export type CONTENT_TYPE =
   | "facility"
   | "facilityListing"
   | "footer"
+  | "header"
   | "menu"
   | "navigationLink"
   | "page"
   | "person"
-  | "training";
+  | "siteConfiguration"
+  | "socialLinks"
+  | "training"
+  | "trainingListing";
 
 export type IEntry =
   | IBanner
@@ -520,11 +711,15 @@ export type IEntry =
   | IFacility
   | IFacilityListing
   | IFooter
+  | IHeader
   | IMenu
   | INavigationLink
   | IPage
   | IPerson
-  | ITraining;
+  | ISiteConfiguration
+  | ISocialLinks
+  | ITraining
+  | ITrainingListing;
 
 export type LOCALE_CODE = "en-US";
 

@@ -51,7 +51,7 @@ function LatestPodcasts(props: any) {
     filter = "";
   }
 
-console.log(data)
+ 
    
  if (data.latestPodcasts.showFeatured == true && data.latestPodcasts.featuredPodcast!==null ) { 
 

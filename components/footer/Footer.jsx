@@ -1,96 +1,214 @@
 import Image from "next/image";
 import Link from "next/link";
-import Social from "../social/Social";
-import logo_light from "/public/images/logo-light.png";
+import { useQuery, gql } from "@apollo/client";
+import UrlBuilder from "@/src/utils/helpers/linkManager";
+import Richtext from "@/src/utils/helpers/richTextHelper";
 
-const Footer = () => {
+function Footer() {
+  const MENU = gql`
+    query {
+      siteConfigurationCollection(
+        where: { title: "Default Site Configuration" }
+        limit: 1
+      ) {
+        items {
+          title
+          footer {
+            title
+            footerLogo
+            introduction
+            address {
+              json
+            }
+            rightColumn {
+              json
+            }
+            copyright
+            quickLinkMenu {
+              title
+              ...LinksCollection
+            }
+            footerLinksMenu {
+              title
+              ...LinksCollection
+            }
+            socialLinksCollection {
+              items {
+                title
+                linkUrl
+                faviconClasses
+              }
+            }
+          }
+        }
+      }
+    }
+
+    fragment LinksCollection on Menu {
+      title
+
+      linksCollection {
+        items {
+          ...FooterNavLink
+
+          title
+
+          subLinksCollection(limit: 10) {
+            items {
+              ...FooterNavLink
+
+              __typename
+            }
+          }
+        }
+      }
+    }
+
+    fragment FooterNavLink on NavigationLink {
+      title
+      pageLink {
+        __typename
+        ...PageLink
+        ...EventLink
+        ...FacilityLink
+        ...TrainingLink
+      }
+    }
+
+    fragment PageLink on Page {
+      title
+      slug
+ 
+    }
+    fragment EventLink on Event {
+      title
+      slug
+   
+    }
+    fragment FacilityLink on Facility {
+      title
+      slug
+ 
+    }
+    fragment TrainingLink on Training {
+      title
+      slug
+    
+    }
+  `;
+
+  const { data, loading, error } = useQuery(MENU);
+  if (loading) {
+    return <div></div>;
+  }
+  if (error) {
+    return <div></div>;
+  }
+
+ 
+
+  const quickLinks =
+    data.siteConfigurationCollection.items[0].footer.quickLinkMenu.linksCollection.items.map(
+      (link, idx) => {
+        const url = UrlBuilder(link);
+
+        return (
+          <li key={idx}>
+            <Link href={url} title={link.title}>{link.title}</Link>
+          </li>
+        );
+      }
+    );
+
+  const socialLinks =
+    data.siteConfigurationCollection.items[0].footer.socialLinksCollection.items.map(
+      (link, idx) => {
+        return (
+          <a href={link.linkUrl} target="_blank" key={idx} title={"Visit Waiheke Pony Club on "+link.title} >
+            <i className={"fa-brands" + " " + link.faviconClasses}></i>
+          </a>
+        );
+      }
+    );
+
+  const bottomLinks =
+    data.siteConfigurationCollection.items[0].footer.footerLinksMenu.linksCollection.items.map(
+      (link, idx) => {
+        const url = UrlBuilder(link);
+
+        return (
+          <li key={idx}>
+            <Link href={url} title={link.title}>{link.title}</Link>
+          </li>
+        );
+      }
+    );
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="row section__row">
-          <div className="col-md-6 col-lg-4 col-xl-3 section__col">
+          <div className="col-md-6 col-lg-2 col-xl-2 section__col">
             <div className="footer__single">
               <Link href="/" className="footer__single-logo">
-                <Image src={logo_light} alt="Logo" />
+                <img 
+                  src={
+                    data.siteConfigurationCollection.items[0].footer
+                      .footerLogo[0].original_secure_url
+                  }
+                  alt="Logo"
+                  width={
+                    data.siteConfigurationCollection.items[0].footer
+                      .footerLogo[0].width
+                  }
+                  height={
+                    data.siteConfigurationCollection.items[0].footer
+                      .footerLogo[0].height
+                  }
+                />
               </Link>
               <div className="footer__single-content">
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry...
-                </p>
-                {/* Socila */}
-                <Social
-                  items={[
-                    ["fa-facebook-f", "/"],
-                    ["fa-twitter", "/"],
-                    ["fa-square-instagram", "/"],
-                    ["fa-linkedin-in", "/"],
-                  ]}
-                />
+                <div className="social justify-content-start">{socialLinks}</div>
               </div>
             </div>
           </div>
           <div className="col-md-6 col-lg-2 col-xl-3 section__col">
             <div className="footer__single">
-              <h5>Quick Links</h5>
               <div className="footer__single-content">
-                <ul>
-                  <li>
-                    <Link href="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link href="/about">About Us</Link>
-                  </li>
-                  <li>
-                    <Link href="/facility">Facility</Link>
-                  </li>
-                  <li>
-                    <Link href="/shop">Shop</Link>
-                  </li>
-                  <li>
-                    <Link href="/contact-us">Contact</Link>
-                  </li>
-                </ul>
+                <h5>
+                  {
+                    data.siteConfigurationCollection.items[0].footer
+                      .quickLinkMenu.title
+                  }
+                </h5>
+
+                <ul>{quickLinks}</ul>
               </div>
             </div>
           </div>
-          <div className="col-md-6 col-lg-3 col-xl-3 section__col">
+          <div className="col-md-6 col-lg-4 col-xl-4 section__col">
             <div className="footer__single">
-              <h5>Address</h5>
               <div className="footer__single-content">
                 <div className="footer__single-content__group">
-                  <p>(480) 555-0103</p>
-                  <p>(406) 555-0120</p>
-                </div>
-                <div className="footer__single-content__group">
-                  <p>deanna.curtis@example.com</p>
-                  <p>debra.holt@example.com</p>
-                </div>
-                <div className="footer__single-content__group">
-                  <p>285 Great North Road, Grey Lynn, Auckland 1021</p>
+                  <Richtext
+                    content={
+                      data.siteConfigurationCollection.items[0].footer.address
+                        .json
+                    }
+                  />
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-md-6 col-lg-3 col-xl-3 section__col">
-            <h5>Newsletter</h5>
+          <div className="col-md-6 col-lg-3 col-xl-3 section__col offset">
             <div className="footer__single">
               <div className="footer__single-content">
-                <p>Subscribe our newsletter to get our latest update & news </p>
-                <form action="#" method="post" name="newsletterForm">
-                  <div className="newsletter">
-                    <input
-                      type="email"
-                      name="news-mail"
-                      id="newsMail"
-                      placeholder="Your email address"
-                      required
-                    />
-                    <button type="submit">
-                      <i className="golftio-paper-plane"></i>
-                    </button>
-                  </div>
-                </form>
+                <Richtext
+                  content={
+                    data.siteConfigurationCollection.items[0].footer.rightColumn
+                      .json
+                  }
+                />
               </div>
             </div>
           </div>
@@ -102,22 +220,11 @@ const Footer = () => {
               <div className="row align-items-center">
                 <div className="col-lg-6">
                   <p>
-                    Copyright &copy; <span id="copyYear"></span> 2023 Golftio.
-                    All Rights Reserved{" "}
+                 {data.siteConfigurationCollection.items[0].footer.copyright}
                   </p>
                 </div>
                 <div className="col-lg-6">
-                  <ul>
-                    <li>
-                      <Link href="/support">Support</Link>
-                    </li>
-                    <li>
-                      <Link href="/terms-conditions">Terms of Use</Link>
-                    </li>
-                    <li>
-                      <Link href="/privacy-policy">Privacy Policy</Link>
-                    </li>
-                  </ul>
+                  <ul>{bottomLinks}</ul>
                 </div>
               </div>
             </div>
@@ -126,6 +233,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

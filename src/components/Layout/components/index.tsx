@@ -3,7 +3,7 @@ import Stream from "@/src/components/Layout/components/streams";
 import Playlist from "@/src/components/Layout/components/playlist";
 import LayoutResolver from "@/src/components/Layout/components/layoutResolver";
 import Message from "@/src/components/Layout/components/message";
-import Accordion from "@/src/components/Layout/components/accordion";
+ 
 import QueryStringPlaylist from "@/src/components/Layout/components/queryStringPlaylist";
 import Shows from "@/src/components/Layout/components/shows";
 import AmazonPlaylist from "@/src/components/Layout/components/amazonPlaylist";
@@ -49,8 +49,7 @@ function renderComponents(props: any) {
         return <Schedule id={id.item} />;
       case "querystringplaylist":
         return <QueryStringPlaylist />;
-      case "accordion":
-        return <Accordion id={id.item} />;
+    
       case "layout":
         return <LayoutResolver id={id.item} />;
       case "video":

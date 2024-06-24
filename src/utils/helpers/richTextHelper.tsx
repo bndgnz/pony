@@ -7,9 +7,9 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 const renderOptions = {
   renderNode: {
-    [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+    [INLINES.EMBEDDED_ENTRY]: (node:any, children:any) => {
       // target the contentType of the EMBEDDED_ENTRY to display as you need
-      if (node.data.target.sys.contentType.sys.id === "blogPost") {
+      if (node.data.target.sys.contentType.sys.id === "page") {
         return (
           <a href={`/blog/${node.data.target.fields.slug}`}>
             {" "}
@@ -18,7 +18,7 @@ const renderOptions = {
         );
       }
     },
-    [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+    [BLOCKS.EMBEDDED_ENTRY]: (node:any, children:any ) => {
       // target the contentType of the EMBEDDED_ENTRY to display as you need
       if (node.data.target.sys.contentType.sys.id === "codeBlock") {
         return (
@@ -41,7 +41,7 @@ const renderOptions = {
       }
     },
 
-    [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
+    [BLOCKS.EMBEDDED_ASSET]: (node:any, children:any) => {
       // render the EMBEDDED_ASSET as you need
       return (
         <img

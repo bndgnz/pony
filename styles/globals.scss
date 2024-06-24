@@ -71,3 +71,42 @@
 
 // responsive styles
 @import "./responsive";
+
+
+a.footer__single-logo img {
+    max-width: 180px;
+}
+
+.footer .footer__single-content .social a {
+    background-color: transparent;
+    border: 1px solid #03561f;
+    margin-right: 20px;
+}
+.footer .footer__single-content .social a i {
+    font-size: 35px;
+    color: #ffffff;
+}
+
+section.banner--secondary h1 {
+    color: #ffffff;
+}
+
+p.primary-text.banner__content-text {color:#ffffff}
+
+
+.banner--inner {
+    padding: 300px 0px 80px;
+    position: relative;
+ 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+section.banner--inner {
+    margin-top: 150px;
+}
+
+.banner--secondary {
+    padding: 216px 0px 50px;
+}
+ 

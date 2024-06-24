@@ -9,7 +9,7 @@
   right: 0px;
   width: 100%;
   z-index: 99;
-  background: transparent;
+  background-color: darkgreen;
 
   .nav {
     padding: 30px 60px;
@@ -378,7 +378,7 @@
     }
 
     .cmn-button--secondary {
-      color: $white;
+ 
       border: 1px solid rgba(255, 255, 255, 0.3) !important;
       &:hover {
         border: 1px solid $primary-color !important;

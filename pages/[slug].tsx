@@ -3,7 +3,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { IPageFields } from "../src/@types/contentful";
 import ContentService from "@/src/utils/content-service";
 import Layout from "@/src/components/layout";
- 
+import Seo from "@/src/components/seo"
 
 interface Props {
   page: IPageFields;
@@ -29,6 +29,7 @@ const LandingPage: NextPage<Props> = ({
 }) => (
   <>
     <>
+    <Seo title={title} description={description} />
       <Layout
         contentImage={contentImage}
         title={title}

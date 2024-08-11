@@ -9,19 +9,22 @@ import { IPageFields } from "../@types/contentful";
  */  
 config();
 
+ 
+
+
 export default class ContentService {
   static get instance() {
     return new ContentService();
   }
 
   client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    space: "dgdm78o9p3tb",
+    accessToken: "9S2SpOEemYLtYlWCBeIRtKxFEmaUcNWG484otyL8wNU",
   });
    
   async getPageBySlug(slug: string) {
     return (
-      await this.client.getEntries<IPageFields>({
+      await this.client.getEntries({
         content_type: "page",
         "fields.slug": slug,
       })
@@ -29,8 +32,9 @@ export default class ContentService {
   }
 
   async getEntriesByType<T>(type: string) {
+    
     return (
-      await this.client.getEntries<T>({
+      await this.client.getEntries({
         content_type: type,
         include: 10
       })

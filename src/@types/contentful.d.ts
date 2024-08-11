@@ -14,10 +14,10 @@ export interface IBannerFields {
   background?: Record<string, any> | undefined;
 
   /** Link */
-  link?: INavigationLink | undefined;
+  link: INavigationLink;
 
   /** Secondary Link */
-  secondaryLink?: INavigationLink | undefined;
+  secondaryLink: INavigationLink;
 }
 
 /** A Banner to go at the top of a page */
@@ -179,9 +179,6 @@ export interface IEventFields {
 
   /** slug */
   slug: string;
-
-  /** path */
-  path?: string | undefined;
 }
 
 /** A scheduled event for the pony club. */
@@ -242,45 +239,6 @@ export interface IEventListing extends Entry<IEventListingFields> {
     contentType: {
       sys: {
         id: "eventListing";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
-export interface IFacilityFields {
-  /** Title */
-  title: string;
-
-  /** Description */
-  description: string;
-
-  /** Content */
-  content?: Document | undefined;
-
-  /** Image */
-  image: Record<string, any>;
-
-  /** slug */
-  slug: string;
-
-  /** path */
-  path?: string | undefined;
-}
-
-/** A facility available at the pony club, i.e. club rooms haha :-) */
-
-export interface IFacility extends Entry<IFacilityFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "facility";
         linkType: "ContentType";
         type: "Link";
       };
@@ -423,10 +381,10 @@ export interface INavigationLinkFields {
   title: string;
 
   /** Page Link */
-  pageLink: IPage | IFacility | ITraining | IEvent;
+  pageLink: IPage;
 
   /** Sub Links */
-  subLinks?: (INavigationLink | IEvent | IPage)[] | undefined;
+  subLinks?: INavigationLink[] | undefined;
 }
 
 /** A link to add to a menu */
@@ -490,6 +448,15 @@ export interface IPageFields {
 
   /** Show Content */
   showContent?: boolean | undefined;
+
+  /** Related Items */
+  relatedItems?: IPage[] | undefined;
+
+  /** Show Related Items */
+  showRelatedItems?: boolean | undefined;
+
+  /** Icon */
+  icon?: string | undefined;
 }
 
 /** A basic page for the site */
@@ -687,7 +654,6 @@ export type CONTENT_TYPE =
   | "carousel"
   | "event"
   | "eventListing"
-  | "facility"
   | "facilityListing"
   | "footer"
   | "header"
@@ -708,7 +674,6 @@ export type IEntry =
   | ICarousel
   | IEvent
   | IEventListing
-  | IFacility
   | IFacilityListing
   | IFooter
   | IHeader

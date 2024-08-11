@@ -1,9 +1,8 @@
 
 function linkBuilder (props: any) {
-let slug;
-let path;
-let url;
-let target; 
+ 
+let url: any;
+ 
  
  
 

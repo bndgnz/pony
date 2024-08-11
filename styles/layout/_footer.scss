@@ -3,8 +3,8 @@
  ==== */
 
 .footer {
-  padding-top: 120px;
-  background-color: $quinary-color;
+  padding-top: 40px;
+  background-color: darkslategray;
 
   h5 {
     margin-top: -6px;
@@ -90,13 +90,43 @@
       a {
         color: $white;
         &:hover {
-          color: $white;
+          color: #42c3da;
         }
       }
     }
   }
 }
+ 
+
+ 
+
+.col-md-6.col-lg-2.col-xl-3.section__col.column-1 {
+
+  
+
+a {text-decoration: none; }
+
+a:hover {text-decoration: underline;color:#42c3da}
+
+}
+
+.footer h5 {
+  margin-bottom: 30px;
+}
 
 /* ==== 
  --------- (4.3) footer styles end ---------
  ==== */
+ .footer .footer__single-content  ul a:hover {
+  color: #42c3da;
+}
+
+
+.copyright a:hover {
+  color: #42c3da;
+}
+
+footer .copyright ul a:hover  {
+  color: #ffffff;
+}
+ 

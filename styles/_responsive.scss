@@ -2188,3 +2188,16 @@
 /* ==== 
   --------- (6.0) responsive styles end ---------
   ==== */
+  .facility--main .section__col {
+    margin-bottom: 12px;
+    display: inline-flex;
+}
+
+.facility--main .facility--main__card {
+  padding: 10px 10px 30px;
+  background-color: #ffffff;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  height: 550px;
+  margin:5px;
+}

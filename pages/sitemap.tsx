@@ -37,7 +37,7 @@ function GenerateSiteMap() {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    ${data.showsCollection.items
-     .map((item) => {
+     .map((item:any) => {
        return `
        <url>
            <loc>${base + "/shows/"}${`${item.slug}`}</loc>
@@ -47,7 +47,7 @@ function GenerateSiteMap() {
      .join("")}
 
        ${data.amazonPodcastCollection.items
-         .map((item) => {
+         .map((item:any) => {
            return `
       <url>
           <loc>${base + "/podcast/"}${`${item.slug}`}</loc>
@@ -57,7 +57,7 @@ function GenerateSiteMap() {
          .join("")}
 
       ${data.landingPageCollection.items
-        .map((item) => {
+        .map((item:any) => {
           return `
       <url>
           <loc>${base + "/"}${`${item.slug}`}</loc>

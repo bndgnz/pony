@@ -36,7 +36,7 @@ const MENU = gql`
       items {
         ...NavLink
         title
-        subLinksCollection(limit: 10) {
+        subLinksCollection(limit: 40) {
           items {
             ...NavLink
             __typename
@@ -51,9 +51,7 @@ const MENU = gql`
     pageLink {
       __typename
       ...PageLink
-      ...EventLink
-      ...FacilityLink
-      ...TrainingLink
+    
     }
   }
   fragment PageLink on Page {
@@ -61,21 +59,7 @@ const MENU = gql`
     slug
     
   }
-  fragment EventLink on Event {
-    title
-    slug
-     
-  }
-  fragment FacilityLink on Facility {
-    title
-    slug
-   
-  }
-  fragment TrainingLink on Training {
-    title
-    slug
-  
-  }
+ 
 `;
 const NavBar = ({ cls = "header--secondary" }) => {
   const [windowHeight, setWindowHeight] = useState(0);
@@ -150,9 +134,13 @@ const NavBar = ({ cls = "header--secondary" }) => {
               }`}
             >
               {link.subLinksCollection.items.map(
+
+ 
+
                 (link:any, sbu_dropdown:any, idx2:any) => {
                   const suburl = UrlBuilder(link);
-                  return sbu_dropdown ? null : (
+          
+                  return   (
                     <li key={idx2}>
                       <Link
                         className="nav__dropdown-item hide-nav"
@@ -258,12 +246,12 @@ const NavBar = ({ cls = "header--secondary" }) => {
                   
                   <div className="nav__uncollapsed-item d-none d-md-flex">
                     <Link
-                      href="/sign-in"
+                      href="/contact-us"
                       className="cmn-button cmn-button--secondary"
                     >
-                      Sign In
+                      Contact Us
                     </Link>
-                    <Link href="/sign-up" className="cmn-button">
+                    <Link href="/join-waiheke-pony-club" className="cmn-button">
                       Sign Up
                     </Link>
                   </div>

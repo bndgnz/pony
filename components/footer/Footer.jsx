@@ -26,11 +26,11 @@ function Footer() {
             copyright
             quickLinkMenu {
               title
-              ...LinksCollection
+              ...FooterLinksCollection
             }
             footerLinksMenu {
               title
-              ...LinksCollection
+              ...FooterLinksCollection
             }
             socialLinksCollection {
               items {
@@ -44,7 +44,7 @@ function Footer() {
       }
     }
 
-    fragment LinksCollection on Menu {
+    fragment FooterLinksCollection on Menu {
       title
 
       linksCollection {
@@ -69,9 +69,7 @@ function Footer() {
       pageLink {
         __typename
         ...PageLink
-        ...EventLink
-        ...FacilityLink
-        ...TrainingLink
+      
       }
     }
 
@@ -80,21 +78,8 @@ function Footer() {
       slug
  
     }
-    fragment EventLink on Event {
-      title
-      slug
-   
-    }
-    fragment FacilityLink on Facility {
-      title
-      slug
  
-    }
-    fragment TrainingLink on Training {
-      title
-      slug
-    
-    }
+  
   `;
 
   const { data, loading, error } = useQuery(MENU);
@@ -148,7 +133,7 @@ function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="row section__row">
-          <div className="col-md-6 col-lg-2 col-xl-2 section__col">
+          <div className="col-md-6 col-lg-3 col-xl-3 section__col">
             <div className="footer__single">
               <Link href="/" className="footer__single-logo">
                 <img 
@@ -172,7 +157,7 @@ function Footer() {
               </div>
             </div>
           </div>
-          <div className="col-md-6 col-lg-2 col-xl-3 section__col">
+          <div className="col-md-6 col-lg-3 col-xl-3 section__col  column-1">
             <div className="footer__single">
               <div className="footer__single-content">
                 <h5>
@@ -200,7 +185,7 @@ function Footer() {
               </div>
             </div>
           </div>
-          <div className="col-md-6 col-lg-3 col-xl-3 section__col offset">
+          <div className="col-md-6 col-lg-2 col-xl-2 section__col offset">
             <div className="footer__single">
               <div className="footer__single-content">
                 <Richtext

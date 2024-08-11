@@ -5,25 +5,20 @@ import Preloader from "./preloader/Preloader";
 import ScrollToTop from "./scrollToTop/ScrollToTop";
 import Components from "@/src/components/componentSorter"
 import Content from "@/src/components/common/content"
+import Subpages from "@/components/common/subPages"
 
-const Layout = (props) => {
+const Layout = (props:any) => {
+
  
-
-
-
 
   return (
     <>
       {/* Preloader */}
       <NavBar />
-      
-     
       <NavBarBanner props={props} />
-
+      <Components props={props.components} />
+      <Subpages props={props} />
       <Content props={props} />
-
-      <Components props={props.components} /> 
-
       {/* Footer */}
       <Footer />
 

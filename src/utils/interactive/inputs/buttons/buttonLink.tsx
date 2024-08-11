@@ -1,5 +1,5 @@
 import Link from "next/link";
-function ButtonLink(props) {
+function ButtonLink(props: any) {
   return (
     <>
       <section className="section-title">

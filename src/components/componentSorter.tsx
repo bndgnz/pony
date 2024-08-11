@@ -1,5 +1,5 @@
 import BigBanner from "@/components/common/BigBanner";
-
+import MessageListing from "@/components/common/Messages";
 
 
 function ComponentSorter (props:any) {
@@ -13,6 +13,9 @@ if (props.props) {
        switch (id) {
         case "banner":
           return <BigBanner id={component.sys.id} key={idx} />;
+
+          case "messageListing":
+          return <MessageListing   />;
          default:
           return null;
       }

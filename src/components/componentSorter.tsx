@@ -21,7 +21,7 @@ if (props.props) {
             return <Accordion id={component.sys.id} key={idx} />;
 
           case "messageListing":
-          return <MessageListing   />;
+          return <MessageListing   key={idx}  />;
          default:
           return null;
       }

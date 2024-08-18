@@ -113,10 +113,10 @@ const NavBar = ({ cls = "header--secondary" }) => {
   }
 
   const listOfItems =
-    data.siteConfigurationCollection.items[0].header.headerMenu.linksCollection.items.map(
+    data.siteConfigurationCollection.items[0].header.headerMenu?.linksCollection.items.map(
       (link:any, idx:any) => {
         const id = link.title;
-        const url = UrlBuilder(link);
+        const url = link?UrlBuilder(link):null;
 
         return (
           <li className="nav__menu-item nav__menu-item--dropdown" key={idx}>
@@ -138,7 +138,7 @@ const NavBar = ({ cls = "header--secondary" }) => {
  
 
                 (link:any, sbu_dropdown:any, idx2:any) => {
-                  const suburl = UrlBuilder(link);
+                  const suburl = link?UrlBuilder(link):null;
           
                   return   (
                     <li key={idx2}>

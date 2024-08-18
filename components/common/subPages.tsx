@@ -73,16 +73,16 @@ const SubPages = (props: any) => {
                   <div className="training__slider-single" key={idx}>
                     <div className="training__slider-single__thumb-small">
                       <div
-                        dangerouslySetInnerHTML={{ __html: itm.fields.icon }}
+                        dangerouslySetInnerHTML={{ __html: itm.fields?.icon }}
                       />
                     </div>
                     <div className="training__slider-single__content">
                       <h5>
-                        <Link href="/training-details">{itm.fields.title}</Link>
+                        <Link href="/training-details">{itm.fields?.title}</Link>
                       </h5>
-                      <p className="secondary-text">{itm.fields.description}</p>
+                      <p className="secondary-text">{itm.fields?.description}</p>
                       <Link
-                        href={"./" + itm.fields.slug}
+                        href={"./" + itm.fields?.slug}
                         className="cmn-button cmn-button--secondary"
                       >
                         View more

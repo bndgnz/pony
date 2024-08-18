@@ -30,11 +30,12 @@ const MessageCollection = () => {
     return <div></div>;
   }
 
-  const messageCollection = data.messageCollection.items.map((itm: any) => {
+  const messageCollection = data.messageCollection.items.map((itm, key) => {
     function MessageLink() {
       if (itm.page) {
         return (
           <Link
+            key={key}
             href={"/" + itm?.page.slug}
             className="facility--main__card-content__cta"
           >
@@ -65,10 +66,10 @@ const MessageCollection = () => {
           </div>
           <div className="facility--main__card-content">
             <h6>{itm?.title}</h6>
-            <p className="secondary-text">
-              {" "}
-              <Richtext content={itm.message.json} />
-            </p>
+           
+             
+              <Richtext content={itm.message.json} className="secondary-text"/>
+            
 
             <MessageLink />
           </div>

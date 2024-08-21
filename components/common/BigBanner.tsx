@@ -53,7 +53,7 @@ const BigBanner = (props: any) => {
       style={{
         backgroundImage: `url(${data.banner.background[0].original_secure_url})`,
         backgroundSize: "cover",
-        backgroundPosition: "top",
+        backgroundPosition: "center center",
       }}
     >
       <div className="container">
@@ -81,20 +81,7 @@ const BigBanner = (props: any) => {
               <h1 className="banner__content-title">{data.banner.title}</h1>
               <p className="primary-text banner__content-text"></p>
               <div className="banner__content-cta">
-                <Link
-                  href={data.banner.link.pageLink.slug}
-                  className="cmn-button"
-                  title={data.banner.link?.pageLink.title}
-                >
-                  {data.banner.link.pageLink.title}
-                </Link>
-                <Link
-                  href={data.banner.secondaryLink.pageLink.slug}
-                  className="cmn-button cmn-button--secondary"
-                  title={data.banner.secondaryLink.pageLink.title}
-                >
-                  {data.banner.secondaryLink.pageLink.title}
-                </Link>
+                
               </div>
             </div>
           </div>

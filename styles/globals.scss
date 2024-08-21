@@ -120,7 +120,7 @@ section.banner--inner {
 }
 
 img.big-banner-logo {
-    max-width: 300px;
+    max-width: 350px;
 }
 
 .col-md-5.col-lg-5.col-sm-12.big-banner-logo {
@@ -138,4 +138,22 @@ img.big-banner-logo {
         width: 100%;
         text-align: center;
     }
+}
+
+.header {
+    position: fixed;
+    top: 30px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    z-index: 99;
+    background-color: #374d75;
+}
+.footer {
+    padding-top: 40px;
+    background-color: #374d75;
+}
+
+.header--secondary.header-active {
+    background-color: #5273a3;
 }

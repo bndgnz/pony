@@ -1,6 +1,7 @@
 import Link from "next/link";
 import UrlBuilder from "@/src/utils/helpers/linkManager";
 import { useQuery, gql } from "@apollo/client";
+import Image from "next/image";
 
 const BigBanner = (props: any) => {
   const id = props.id;
@@ -11,6 +12,9 @@ const BigBanner = (props: any) => {
         title
         background
         subTitle
+        showTitle
+        showSubTitle
+        logo
         link {
           ...NavLink
         }
@@ -41,6 +45,8 @@ const BigBanner = (props: any) => {
     return <div></div>;
   }
 
+  console.log(data)
+
   return (
     <section
       className="banner--secondary"
@@ -52,7 +58,19 @@ const BigBanner = (props: any) => {
     >
       <div className="container">
         <div className="row">
-          <div className="col-12 col-lg-6 col-xl-7">
+          <div className="col-md-5 col-lg-5 col-sm-12 big-banner-logo">
+         
+        
+          <Image
+            src={data.banner.logo[0].secure_url}
+            width={data.banner.logo[0].width}
+            height={data.banner.logo[0].height}
+            alt={data.banner.logo[0].alt}
+            className="big-banner-logo"
+          /> 
+
+          </div>
+          <div className="col-md-7 col-lg-7 col-sm-12 big-banner-text">
             <div
               className="banner__content wow fadeInUp"
               data-wow-duration="0.4s"

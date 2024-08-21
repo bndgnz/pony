@@ -118,3 +118,24 @@ section.banner--inner {
     height: 680px;
     margin: 5px;
 }
+
+img.big-banner-logo {
+    max-width: 300px;
+}
+
+.col-md-5.col-lg-5.col-sm-12.big-banner-logo {
+    text-align: center;
+}
+
+.col-md-7.col-lg-7.col-sm-12.big-banner-text {
+    text-align: left;
+}
+
+
+@media only screen and (max-width: 767.98px) {
+    .cmn-button {
+        padding: 10px 24px;
+        width: 100%;
+        text-align: center;
+    }
+}

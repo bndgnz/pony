@@ -61,8 +61,8 @@ export default function AccordionComponent(props: any) {
     return collection;
   }
   return (
-    <section className="section training training--secondary">
-      <div className="container">
+    <section className="section training training--secondary faqs">
+      <div className="container faq-container">
         <div className="row section__row align-items-center"></div>
 
         <h3 style={{ marginBottom: "20px" }}>{data.accordion.title}</h3>

@@ -45,7 +45,7 @@ const BigBanner = (props: any) => {
     return <div></div>;
   }
 
-  console.log(data)
+  console.log("DATA:",data.banner.showSubTitle)
 
   return (
     <section
@@ -53,7 +53,7 @@ const BigBanner = (props: any) => {
       style={{
         backgroundImage: `url(${data.banner.background[0].original_secure_url})`,
         backgroundSize: "cover",
-        backgroundPosition: "center center",
+        backgroundPosition: "top center",
       }}
     >
       <div className="container">
@@ -75,14 +75,11 @@ const BigBanner = (props: any) => {
               className="banner__content wow fadeInUp"
               data-wow-duration="0.4s"
             >
-              <h5 className="banner__content-sub-title">
+            { data.banner.showSubTitle ? (<h5 className="banner__content-sub-title">
                 {data.banner.subTitle}
-              </h5>
-              <h1 className="banner__content-title">{data.banner.title}</h1>
-              <p className="primary-text banner__content-text"></p>
-              <div className="banner__content-cta">
-                
-              </div>
+              </h5>):''}      { data.banner.showTitle ?        (<h1 className="banner__content-title">{data.banner.title}</h1>):'' }
+           
+              
             </div>
           </div>
         </div>

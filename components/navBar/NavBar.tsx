@@ -121,18 +121,22 @@ const NavBar = ({ cls = "header--secondary" }) => {
         return (
           <li className="nav__menu-item nav__menu-item--dropdown" key={idx}>
             <Link
-              onClick={() => handleDropdown(id)}
+            onClick={handleActive}
               href={url}
               className={`nav__menu-link nav__menu-link--dropdown ${"nav__menu-link--dropdown-active"}`}
               title={link.title}
             >
               {link.title}
             </Link>
+
+ 
+
+{link.subLinksCollection.items.length !==0?(
             <ul key={idx}
               className={`nav__dropdown ${
                 dropdownId === "nav__dropdown-active"
               }`}
-            >
+            > 
               {link.subLinksCollection.items.map(
 
  
@@ -148,13 +152,16 @@ const NavBar = ({ cls = "header--secondary" }) => {
                         title={link.title}
                         onClick={handleActive}
                       >
-                        {link.title}
+                        {link.title} 
                       </Link>
                     </li>
                   );
                 }
               )}
-            </ul>
+            </ul>):''
+      }
+
+
           </li>
         );
       }

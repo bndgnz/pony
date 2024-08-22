@@ -8,10 +8,10 @@ function Content(props: any) {
       if (props.props.contentImage) {
         return (
           <Image
-            src={props.props.contentImage[0].secure_url}
-            width={props.props.contentImage[0].width}
-            height={props.props.contentImage[0].height}
-            alt={props.props.contentImage[0].alt}
+            src={props.props?.contentImage[0].secure_url}
+            width={props.props?.contentImage[0].width}
+            height={props.props?.contentImage[0].height}
+            alt={props.props?.contentImage[0].alt}
           />
         );
       } else {
@@ -24,6 +24,10 @@ function Content(props: any) {
         <div className="container">
           <div className="row section__row align-items-center">
             <div className="col-lg-6 col-xl-6 section__col">
+
+            <div className="banner--inner__content">
+                  <h1 className="content-title">{props.props.title}</h1>
+                </div>
               <div className="section__content">
                 <div className="about__section-inner">
                   <Richtext content={props.props.content} />

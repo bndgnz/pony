@@ -1,7 +1,7 @@
 import BigBanner from "@/components/common/BigBanner";
 import MessageListing from "@/components/common/Messages";
 import Accordion from"@/src/components/Accordion";
-
+import Facebook from "@/src/components/facebook"
 
 function ComponentSorter (props:any) {
 
@@ -19,6 +19,9 @@ if (props.props) {
 
           case "accordion":
             return <Accordion id={component.sys.id} key={idx} />;
+
+            case "facebook":
+            return <Facebook />;
 
           case "messageListing":
           return <MessageListing   key={idx}  />;

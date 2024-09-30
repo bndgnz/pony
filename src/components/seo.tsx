@@ -1,6 +1,6 @@
 import Head from "next/head";
 function Seo(props: any) {
-  return (
+  return (<>
     <div>
       <Head>
  
@@ -17,6 +17,7 @@ function Seo(props: any) {
          
       </Head>
     </div>
+    </>
   );
 }
 

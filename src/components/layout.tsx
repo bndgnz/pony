@@ -14,9 +14,13 @@ const Layout = (props:any) => {
   return (
     <>
       {/* Preloader */}
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-557JBPTS"
+height="0" width="0" style={{display:'none', visibility:'hidden'}}></iframe></noscript>
+ 
       <NavBar />
       <NavBarBanner props={props} />
-      <Components props={props.components} />
+      <Components props={props.components} /> 
       <Subpages props={props} />
       <Content props={props} />
       {/* Footer */}

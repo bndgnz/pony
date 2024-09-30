@@ -258,7 +258,7 @@ const NavBar = ({ cls = "header--secondary" }) => {
                     >
                       Contact Us
                     </Link>
-                    <Link href="/join-waiheke-pony-club" className="cmn-button">
+                    <Link href="/membership" className="cmn-button">
                       Sign Up
                     </Link>
                   </div>

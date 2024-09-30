@@ -51,7 +51,7 @@ const BigBanner = (props: any) => {
     <section
       className="banner--secondary"
       style={{
-        backgroundImage: `url(${data.banner.background[0].original_secure_url})`,
+        backgroundImage: `url(${data?.banner?.background[0]?.original_secure_url})`,
         backgroundSize: "cover",
         backgroundPosition: "top center",
       }}
@@ -62,7 +62,7 @@ const BigBanner = (props: any) => {
          
         
           <Image
-            src={data.banner.logo[0].secure_url}
+            src={data?.banner?.logo[0]?.secure_url}
             width={data.banner.logo[0].width}
             height={data.banner.logo[0].height}
             alt={data.banner.logo[0].alt}

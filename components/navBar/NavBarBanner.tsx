@@ -32,7 +32,7 @@ function NavBarBanner(props: any) {
         <section
           className="banner--inner"
           style={{
-            backgroundImage: `url(${props.props.image[0].original_secure_url})`,
+            backgroundImage: `url(${props.props?.image[0]?.original_secure_url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

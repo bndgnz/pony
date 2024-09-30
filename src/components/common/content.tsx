@@ -8,10 +8,10 @@ function Content(props: any) {
       if (props.props.contentImage) {
         return (
           <Image
-            src={props.props?.contentImage[0].secure_url}
-            width={props.props?.contentImage[0].width}
-            height={props.props?.contentImage[0].height}
-            alt={props.props?.contentImage[0].alt}
+            src={props.props?.contentImage[0]?.secure_url}
+            width={props.props?.contentImage[0]?.width}
+            height={props.props?.contentImage[0]?.height}
+            alt={props.props?.contentImage[0]?.alt}
           />
         );
       } else {

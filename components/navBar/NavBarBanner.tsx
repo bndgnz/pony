@@ -34,7 +34,7 @@ function NavBarBanner(props: any) {
           style={{
             backgroundImage: `url(${props.props?.image[0]?.original_secure_url})`,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "top",
           }}
         >
           <div className="container">

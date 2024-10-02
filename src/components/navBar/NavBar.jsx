@@ -241,13 +241,13 @@ const NavBar = ({ cls = "header--secondary" }) => {
                   </Link>
                   <div className="nav__uncollapsed-item d-none d-md-flex">
                     <Link
-                      href="/sign-in"
+                      href="/membership"
                       className="cmn-button cmn-button--secondary"
                     >
-                      Sign In
-                    </Link>
-                    <Link href="/sign-up" className="cmn-button">
                       Sign Up
+                    </Link>
+                    <Link href="/contact-us" className="cmn-button">
+                      Contact Us
                     </Link>
                   </div>
                   <button

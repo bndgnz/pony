@@ -223,15 +223,15 @@ const NavBar = ({ cls = "header--secondary" }) => {
                     {listOfItems}
 
                     <li className="nav__menu-item d-block d-md-none">
-                      <Link
-                        href="/sign-in"
-                        className="cmn-button cmn-button--secondary"
-                      >
-                        Sign In
-                      </Link>
-                      <Link href="/sign-up" className="cmn-button">
-                        Sign Up
-                      </Link>
+                    <Link
+                      href="/membership"
+                      className="cmn-button cmn-button--secondary"
+                    >
+                      Sign Up
+                    </Link>
+                    <Link href="/contact-us" className="cmn-button">
+                      Contact Us
+                    </Link>
                     </li>
                   </ul>
                   <div className="social">

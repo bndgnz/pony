@@ -44,14 +44,15 @@ const renderOptions = {
     [BLOCKS.EMBEDDED_ASSET]: (node:any, children:any) => {
       // render the EMBEDDED_ASSET as you need
 
-console.log("NODE",node)
- 
+
    if (node.data.target.fields?.file?.contentType == "application/pdf") {
 return (<a href={node.data.target.fields?.file.url} target="_blank">{node.data.target.fields.description}</a>)
   }
+  if (node.data.target.fields?.file?.contentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+    return (<a href={node.data.target.fields?.file.url} target="_blank">{node.data.target.fields.file.fileName}</a>)
+      }
 
-
-      return (<>  {node.data.target.fields.file.contentType}
+      return (<>
         <img
           src={`https://${node.data.target.fields.file.url}`}
           height={node.data.target.fields.file.details.image?.height}

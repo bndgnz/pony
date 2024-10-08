@@ -243,5 +243,10 @@ p{color: #374d75 !important;}
     }
 }
 
+.section__content a {
+    color: #5273a3; font-weight:unset; text-decoration:underline;font-weight: 800;
+}
 
-.section_content a:link {text-decoration: underline;font-weight:600; color:#5273a3;}
+h2 {
+    font-size: 115%;
+}

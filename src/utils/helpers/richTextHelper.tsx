@@ -48,8 +48,7 @@ console.log("NODE",node)
  
    if (node.data.target.fields?.file?.contentType == "application/pdf") {
 return (<a href={node.data.target.fields?.file.url} target="_blank">{node.data.target.fields.description}</a>)
-
-   }
+  }
 
 
       return (<>  {node.data.target.fields.file.contentType}

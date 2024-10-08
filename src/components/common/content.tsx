@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 function Content(props: any) {
+  console.log("PROPS",props)
   if (props.props.showContent === true) {
     function ContentImage() {
       if (props.props.contentImage) {

@@ -11,7 +11,7 @@ export default function Iframe(props: any) {
 
           <iframe src={props?.props?.props[0].fields?.source} width={props?.props?.props[0]?.fields?.width||"800"} height={props?.props?.props[0]?.fields?.height||"600"} ></iframe>
  
-
+ 
 
           </div>
         </div>

@@ -19,9 +19,10 @@ const Layout = (props:any) => {
  
       <NavBar />
       <NavBarBanner props={props} />
-      <Components props={props.components} /> 
+
       <Subpages props={props} />
       <Content props={props} />
+      <Components props={props.components} /> 
       {/* Footer */}
       <Footer />
 

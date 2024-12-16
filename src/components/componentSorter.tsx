@@ -7,8 +7,6 @@ import Iframe from "@/src/components/iframe"
 
 function ComponentSorter (props:any) {
 
-  console.log("PROPS",props)
-
 if (props.props) {
     const listOfItems =
     props.props.map(

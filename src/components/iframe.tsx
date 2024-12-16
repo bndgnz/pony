@@ -2,8 +2,6 @@ import React from "react";
 export default function Iframe(props: any) {
   const id = props.id;
 
-  console.log(">>>>>>>>", props)
-  
   return (
     <section className="section about about--alt">
         <div className="container">
